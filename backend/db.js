@@ -1,5 +1,18 @@
 const mongoose = require("mongoose")
 
-const mongoURL = "mongodb+srv://bhaskerjoshi977:Global9210@cluster0.4vre39t.mongodb.net/?retryWrites=true&w=majority"
+const mongoURL = "mongodb+srv://bhaskerjoshi977:Global9210@cluster0.4vre39t.mongodb.net/Foodie'sHub?retryWrites=true&w=majority"
 
-mongoose.connect("")
+const mongoDB = async() =>{
+    try {
+        await mongoose.connect(mongoURL)
+        console.log("connected")
+        let fetchedData = mongoose.connection.db.collection("food_item")
+        let collectionAllData = fetchedData.find({})
+        let data = await collectionAllData.toArray();
+        // console.log(data)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+module.exports = mongoDB

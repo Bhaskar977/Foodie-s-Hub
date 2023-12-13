@@ -1,7 +1,12 @@
 const express = require("express")
 
 const app = express()
+app.use(express.json())
+const mongoDB = require("./db")
+mongoDB();
 
+
+app.use('/api',require('./Router/CreateUser'))
 
 app.get("/",(req,res)=>{
     res.send("Home Page")
